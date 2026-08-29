@@ -2,7 +2,7 @@ name: kde-essentials
 type: apt
 sources:
   - packages:
-    - kde-standard
+    - plasma-desktop
 
 #modules:
 #  - name: plasma-login-manager-systemd

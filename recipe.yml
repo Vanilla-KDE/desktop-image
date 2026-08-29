@@ -72,7 +72,7 @@ stages:
       - modules/03-fswarn.yml
       - modules/10-vanilla-abroot-rollback-notifier.yml
       - modules/15-kde-essentials.yml
-      - modules/18-libs-extra.yml
+#      - modules/18-libs-extra.yml
 #      - modules/21-gnome-control-center.yml
 #      - modules/35-nautilus-terminal-rightclick.yml
 #      - modules/40-gnome-appearance.yml
@@ -81,7 +81,6 @@ stages:
       - modules/80-printers.yml
       - modules/100-accessibility.yml
       - modules/110-fonts.yml
-      - modules/120-network.yml
       - modules/121-disable-ssh-daemon.yml
       - modules/130-plymouth.yml
       - modules/131-plymouth-theme-vanilla.yml
