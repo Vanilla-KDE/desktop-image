@@ -2,8 +2,8 @@ name: vanilla-first-setup
 type: shell
 sources:
   - type: file
-    url: https://github.com/Vanilla-OS/first-setup/releases/download/v3.4.1/vanilla-first-setup.deb
-    checksum: 28ea6b5beaee6fb585704e11eebb16b54dd01f42e925d8c6c569e2226d845672
+    url: https://github.com/Vanilla-KDE/first-setup/releases/download/v3.4.1/vanilla-first-setup.deb
+    checksum: 55bb311b4d1b5afc0e87981b08360a6756f71b1c5a7499222b89b88b490dfa26
 commands:
   - apt-get install -y /sources/vanilla-first-setup/vanilla-first-setup/vanilla-first-setup.deb
   - mkdir -p /etc/systemd/system/local-fs.target.wants/

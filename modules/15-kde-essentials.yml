@@ -1,0 +1,21 @@
+name: kde-essentials
+type: apt
+sources:
+  - packages:
+    - kde-standard
+
+#modules:
+#  - name: plasma-login-manager-systemd
+#    type: shell
+#    commands:
+#      - cmake -S plasma-login-manager -B plasma-login-manager/build && make install -C plasma-login-manager/build
+#      - systemctl disable sddm
+#      - systemctl enable plasmalogin
+#    sources:
+#      - url: https://invent.kde.org/plasma/plasma-login-manager.git
+#        type: git
+#        tag: v6.7.4
+#      - packages:
+#        - cmake
+#        - extra-cmake-modules
+#        - build-essential
