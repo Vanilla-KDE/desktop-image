@@ -5,6 +5,6 @@ commands:
   - chmod +x /usr/share/init.d/*
   # fix-gdm-permissions-service
   - mkdir -p /etc/systemd/system/multi-user.target.wants/
-  - ln -s /usr/lib/systemd/system/fix-gdm-permissions.service /etc/systemd/system/multi-user.target.wants/
+  #- ln -s /usr/lib/systemd/system/fix-gdm-permissions.service /etc/systemd/system/multi-user.target.wants/
   # gnome-software-setup
-  - rm /usr/lib/*/gnome-software/plugins-*/libgs_plugin_packagekit.so
+  #- rm /usr/lib/*/gnome-software/plugins-*/libgs_plugin_packagekit.so

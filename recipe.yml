@@ -72,10 +72,7 @@ stages:
       - modules/03-fswarn.yml
       - modules/10-vanilla-abroot-rollback-notifier.yml
       - modules/15-kde-essentials.yml
-#      - modules/18-libs-extra.yml
-#      - modules/21-gnome-control-center.yml
-#      - modules/35-nautilus-terminal-rightclick.yml
-#      - modules/40-gnome-appearance.yml
+      - modules/18-libs-extra.yml
       - modules/50-laptop-goodies.yml
       - modules/60-media.yml
       - modules/80-printers.yml
@@ -87,8 +84,8 @@ stages:
       - modules/140-password.yml
       - modules/160-utilities.yml
 #      - modules/170-gnome-software-vso-plugin.yml
-#      - modules/997-misc-setup.yml
-#      - modules/999-cleanup.yml
+      - modules/997-misc-setup.yml
+      - modules/999-cleanup.yml
 
   - name: cleanup-and-sysconf-setup
     type: shell

@@ -5,6 +5,6 @@ commands:
 - apt remove -y dpkg-dev debhelper-compat dh-sequence-gnome libglib2.0-dev meson build-essential debhelper libadwaita-1-dev gettext make libjpeg-dev libnm-dev libnma-gtk4-dev papers
 - apt autoremove -y
 - apt clean
-- apt remove -y zutty gnome-shell-extension-prefs
+#- apt remove -y zutty gnome-shell-extension-prefs
 - SUDO_FORCE_REMOVE=yes apt purge -y sudo
-- echo 'NoDisplay=true' >> /usr/share/applications/software-properties-gtk.desktop
+#- echo 'NoDisplay=true' >> /usr/share/applications/software-properties-gtk.desktop

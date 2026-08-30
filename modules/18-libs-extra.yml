@@ -1,0 +1,10 @@
+name: libs-extra
+type: apt
+sources:
+  - packages:
+    - libnotify-bin
+    - libwacom9
+
+    - libavif-gdk-pixbuf
+    - ffmpegthumbnailer
+    - ooo-thumbnailer
