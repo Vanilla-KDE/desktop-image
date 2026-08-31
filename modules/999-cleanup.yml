@@ -1,10 +1,33 @@
 name: cleanup
 type: shell
 commands:
-- sed -i '/^Categories=/ s/$/Utility;X-GNOME-Utilities;/' /usr/share/applications/display-im7.q16.desktop
-- apt remove -y dpkg-dev debhelper-compat dh-sequence-gnome libglib2.0-dev meson build-essential debhelper libadwaita-1-dev gettext make libjpeg-dev libnm-dev libnma-gtk4-dev papers
-- apt autoremove -y
-- apt clean
-#- apt remove -y zutty gnome-shell-extension-prefs
-- SUDO_FORCE_REMOVE=yes apt purge -y sudo
-#- echo 'NoDisplay=true' >> /usr/share/applications/software-properties-gtk.desktop
+  - sed -i '/^Categories=/ s/$/Utility;X-GNOME-Utilities;/' /usr/share/applications/display-im7.q16.desktop
+  - apt remove -y dpkg-dev debhelper-compat dh-sequence-gnome libglib2.0-dev meson build-essential debhelper libadwaita-1-dev gettext make libjpeg-dev libnm-dev libnma-gtk4-dev papers
+  - apt autoremove -y
+  - apt clean
+  #- apt remove -y zutty gnome-shell-extension-prefs
+  #- SUDO_FORCE_REMOVE=yes apt purge -y sudo
+  #- echo 'NoDisplay=true' >> /usr/share/applications/software-properties-gtk.desktop
+
+modules:
+  - name: fake-sudo
+    type: shell
+    sources:
+      - type: git
+        url: https://github.com/Aleksanaa/polkit-fakesudo
+        tag: 0.0.3
+
+    commands:
+      - mv /usr/bin/sudo /usr/bin/sudo.disabled
+      - mv /sources/fake-sudo/polkit-fakesudo/sudo /usr/bin/sudo
+      - mkdir -p /usr/share/polkit-fakesudo
+      - mv /sources/fake-sudo/polkit-fakesudo/help1 /usr/share/polkit-fakesudo/help1
+      - mv /sources/fake-sudo/polkit-fakesudo/help2 /usr/share/polkit-fakesudo/help2
+
+      - chown root:root /usr/bin/sudo
+      - chown root:root /usr/share/polkit-fakesudo/help1
+      - chown root:root /usr/share/polkit-fakesudo/help2
+
+      - chmod 755 /usr/bin/sudo
+      - chmod 4755 /usr/share/polkit-fakesudo/help1
+      - chmod 4755 /usr/share/polkit-fakesudo/help2
