@@ -2,7 +2,15 @@ name: kde-essentials
 type: apt
 sources:
   - packages:
-    - kde-plasma-desktop
+    - plasma-desktop
+    - sddm
+
+    - udisks2
+    - upower
+
+    - kde-inotify-survey
+    - libpam-fprintd
+    - webext-plasma-browser-integration
 
 #modules:
 #  - name: plasma-login-manager-systemd

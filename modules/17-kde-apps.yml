@@ -1,0 +1,9 @@
+name: kde-apps
+type: apt
+sources:
+  - packages:
+    - dolphin
+    - konsole
+    - kfind
+    - kdeconnect
+    - kdialog

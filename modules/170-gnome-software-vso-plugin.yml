@@ -1,6 +1,0 @@
-name: gs-vso-plugin
-type: shell
-commands:
-- curl -L -O https://github.com/Vanilla-OS/gs-plugin-vso/releases/download/v1.1.0/libgs_plugin_vso_$(dpkg --print-architecture).so
-- mkdir -p /usr/lib/$(uname -m)-linux-gnu/gnome-software/plugins-23/
-- mv libgs_plugin_vso*.so /usr/lib/$(uname -m)-linux-gnu/gnome-software/plugins-23/libgs_plugin_vso.so
