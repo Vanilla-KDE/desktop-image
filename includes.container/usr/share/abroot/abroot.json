@@ -5,7 +5,7 @@
     "registry": "ghcr.io",
     "registryService": "registry.ghcr.io",
     "registryAPIVersion": "v2",
-    "name": "vanilla-os/gnome",
+    "name": "vanilla-kde/kde",
     "tag": "latest",
 
     "iPkgMngPre": "lpkg --unlock",

@@ -13,6 +13,4 @@ modules:
     - packages:
       - dpkg-dev
       - debhelper-compat
-      - dh-sequence-gnome
-      - libglib2.0-dev
       - meson

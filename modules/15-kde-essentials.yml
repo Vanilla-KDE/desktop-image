@@ -12,6 +12,16 @@ sources:
     - libpam-fprintd
     - webext-plasma-browser-integration
 
+modules:
+  - name: sddm-theme
+    type: shell
+    sources:
+      - type: git
+        url: https://github.com/Vanilla-KDE/vanilla-sddm
+        tag: v0.1
+    commands:
+      - mkdir -p /usr/share/sddm/themes
+      - mv /sources/sddm-theme/vanilla-sddm /usr/share/sddm/themes/vanilla
 #modules:
 #  - name: plasma-login-manager-systemd
 #    type: shell
