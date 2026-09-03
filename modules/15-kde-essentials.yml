@@ -10,7 +10,6 @@ sources:
 
     - kde-inotify-survey
     - libpam-fprintd
-    - webext-plasma-browser-integration
 
 modules:
   - name: sddm-theme

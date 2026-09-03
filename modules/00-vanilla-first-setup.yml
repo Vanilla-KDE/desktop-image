@@ -3,7 +3,7 @@ type: shell
 sources:
   - type: file
     url: https://github.com/Vanilla-KDE/first-setup/releases/download/v3.4.1/vanilla-first-setup.deb
-    checksum: 7cf27c1720d186de5aec34030f4c3aeadda9278999f17067a4a2d0157445b2af
+    checksum: 5d0381fdceb63b3688be44b72c3ff2d3b1d237ff74c9744bd0a4920876c4aec2
 commands:
   - apt-get install -y /sources/vanilla-first-setup/vanilla-first-setup/vanilla-first-setup.deb
   - mkdir -p /etc/systemd/system/local-fs.target.wants/
