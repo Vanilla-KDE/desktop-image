@@ -1,22 +1,39 @@
 #!/bin/bash
 
+KONSOLE_RC="$HOME/.config/konsolerc"
+PROFILE_DIR="$HOME/.local/share/konsole"
+PROFILE_FILE="$PROFILE_DIR/apx-vso-native.profile"
+PROFILE_NAME="apx-vso-native"
+
+# Ensure container exists
 CONTAINER_ID=$(podman ps -a --filter name=apx-vso-native --no-trunc -q)
 if [ -z "$CONTAINER_ID" ]; then
     vso native init
     exit
 fi
 
-gsettings set org.gnome.Ptyxis.Profile:/org/gnome/Ptyxis/Profiles/vso/ default-container $CONTAINER_ID
-gsettings set org.gnome.Ptyxis.Profile:/org/gnome/Ptyxis/Profiles/vso/ label "VSO Profile"
-PTYXIS_PROFILE_UUIDS=$(gsettings get org.gnome.Ptyxis profile-uuids)
-case $PTYXIS_PROFILE_UUIDS in
-    *\[\]*)
-        gsettings set org.gnome.Ptyxis profile-uuids "['vso']"
-        ;;
-    *vso*)
-        ;;
-    *)
-        gsettings set org.gnome.Ptyxis profile-uuids "${PTYXIS_PROFILE_UUIDS%]}, 'vso']"
-        ;;
-esac
-gsettings set org.gnome.Ptyxis default-profile-uuid vso
+mkdir -p "$PROFILE_DIR"
+
+cat > "$PROFILE_FILE" << 'EOF'
+[General]
+Command=distrobox enter apx-vso-native
+Name=apx-vso-native
+Parent=FALLBACK/
+EOF
+
+if command -v kwriteconfig6 &>/dev/null; then
+    kwriteconfig6 --file "$KONSOLE_RC" --group "Desktop Entry" --key "DefaultProfile" "${PROFILE_NAME}.profile"
+else
+    mkdir -p "$(dirname "$KONSOLE_RC")"
+    touch "$KONSOLE_RC"
+    
+    if grep -q '^\[Desktop Entry\]' "$KONSOLE_RC"; then
+        if grep -q '^DefaultProfile=' "$KONSOLE_RC"; then
+            sed -i "s|^DefaultProfile=.*|DefaultProfile=${PROFILE_NAME}.profile|" "$KONSOLE_RC"
+        else
+            sed -i "/^\[Desktop Entry\]/a DefaultProfile=${PROFILE_NAME}.profile" "$KONSOLE_RC"
+        fi
+    else
+        printf '[Desktop Entry]\nDefaultProfile=%s.profile\n' "$PROFILE_NAME" >> "$KONSOLE_RC"
+    fi
+fi
