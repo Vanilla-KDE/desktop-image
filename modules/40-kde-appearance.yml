@@ -1,0 +1,5 @@
+name: kde-appearance
+type: apt
+sources:
+  - packages:
+    - plasma-workspace-wallpapers

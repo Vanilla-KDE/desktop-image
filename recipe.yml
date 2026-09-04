@@ -74,6 +74,7 @@ stages:
       - modules/15-kde-essentials.yml
       - modules/17-kde-apps.yml
       - modules/18-libs-extra.yml
+      - modules/40-kde-appearance.yml
       - modules/50-laptop-goodies.yml
       - modules/60-media.yml
       - modules/80-printers.yml
