@@ -1,10 +1,18 @@
 #!/bin/bash
 
-WALLPAPER="/usr/share/wallpapers/fairy-tale"
-TARGET_USER="vanilla"
 MARKER="$HOME/.local/state/setup-user-profile-done"
 
+# Wallpapers
+
+WALLPAPER="/usr/share/wallpapers/fairy-tale"
+
 [ -f "$MARKER" ] && exit 0
+
+/usr/bin/plasma-apply-wallpaperimage "$WALLPAPER"
+
+# Remove panels for vanilla
+
+TARGET_USER="vanilla"
 
 if [ "$USER" = "$TARGET_USER" ]; then
 
@@ -12,9 +20,22 @@ if [ "$USER" = "$TARGET_USER" ]; then
 
 fi
 
-if /usr/bin/plasma-apply-wallpaperimage "$WALLPAPER"; then
-    mkdir -p "$(dirname "$MARKER")"
-    touch "$MARKER"
-fi
+
+# Welcome Center
+
+CONFIG="$HOME/.config/plasma-welcomerc"
+VERSION=$(plasmashell --version 2>/dev/null | grep -oP '\d+\.\d+(\.\d+)?')
+
+mkdir -p "$(dirname "$CONFIG")"
+cat > "$CONFIG" <<EOF
+[General]
+LastSeenVersion=$VERSION
+ShouldShow=false
+EOF
+
+# Marker
+
+mkdir -p "$(dirname "$MARKER")"
+touch "$MARKER"
 
 
