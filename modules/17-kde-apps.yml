@@ -7,3 +7,4 @@ sources:
     - kfind
     - kdeconnect
     - kdialog
+    - kaccounts-integration

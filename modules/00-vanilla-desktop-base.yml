@@ -16,3 +16,8 @@ modules:
       - dh-make
       - librsvg2-bin
       - optipng
+- name: vanilla-logo
+  type: shell
+  commands:
+    - echo 'LOGO=emblem-vanilla' >> /etc/os-release
+  

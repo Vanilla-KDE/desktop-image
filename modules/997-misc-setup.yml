@@ -3,8 +3,5 @@ type: shell
 commands:
   # Make init.d scripts executable
   - chmod +x /usr/share/init.d/*
-  # fix-gdm-permissions-service
-  - mkdir -p /etc/systemd/system/multi-user.target.wants/
-  #- ln -s /usr/lib/systemd/system/fix-gdm-permissions.service /etc/systemd/system/multi-user.target.wants/
-  # gnome-software-setup
-  #- rm /usr/lib/*/gnome-software/plugins-*/libgs_plugin_packagekit.so
+  # discover-software-setup
+  - rm /usr/lib/*/*/plugins/discover/packagekit-backend.so
