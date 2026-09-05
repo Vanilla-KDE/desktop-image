@@ -3,3 +3,10 @@ type: apt
 sources:
   - packages:
     - plasma-workspace-wallpapers
+
+modules:
+  - name: kde-default-profile
+    type: shell
+    commands:
+      - chmod +x /usr/bin/setup-user-profile
+      - systemctl --global enable setup-user-profile.service

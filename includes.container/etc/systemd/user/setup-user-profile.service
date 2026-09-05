@@ -1,0 +1,10 @@
+[Unit]
+Description=Set up Vanilla OS appearance for new users
+After=plasma-workspace.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/setup-user-profile
+
+[Install]
+WantedBy=plasma-workspace.target

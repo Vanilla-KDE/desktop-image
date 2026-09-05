@@ -1,0 +1,20 @@
+#!/bin/bash
+
+WALLPAPER="/usr/share/wallpapers/fairy-tale"
+TARGET_USER="vanilla"
+MARKER="$HOME/.local/state/setup-user-profile-done"
+
+[ -f "$MARKER" ] && exit 0
+
+if [ "$USER" = "$TARGET_USER" ]; then
+
+    qdbus6 org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "var panels = panels(); for (var i in panels) { panels[i].remove(); }"
+
+fi
+
+if /usr/bin/plasma-apply-wallpaperimage "$WALLPAPER"; then
+    mkdir -p "$(dirname "$MARKER")"
+    touch "$MARKER"
+fi
+
+
