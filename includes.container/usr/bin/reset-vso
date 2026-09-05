@@ -1,5 +1,11 @@
 #!/bin/bash
 
+KONSOLE_RC="$HOME/.config/konsolerc"
+PROFILE_DIR="$HOME/.local/share/konsole"
+PROFILE_FILE="$PROFILE_DIR/apx-vso-native.profile"
+PROFILE_NAME="apx-vso-native"
+
+
 if [ "$1" == "--tty" ]; then
     echo "Are you sure you want to reset the VSO? This will remove all your installed software in the subsystem. [y/N]"
     read -r answer
@@ -18,14 +24,15 @@ fi
 
 CONTAINER_ID=$(podman ps -a --filter name=apx-vso-native --no-trunc -q)
 if [ -n "$CONTAINER_ID" ]; then
-    PTYXIS_DEFAULT_PROFILE_UUID=$(gsettings get org.gnome.Ptyxis default-profile-uuid 2>/dev/null | tr -d "'" || echo "")
-    if [ -n "$PTYXIS_DEFAULT_PROFILE_UUID" ]; then
-        PTYXIS_DEFAULT_CONTAINER=$(gsettings get "org.gnome.Ptyxis.Profile:/org/gnome/Ptyxis/Profiles/${PTYXIS_DEFAULT_PROFILE_UUID}/" default-container 2>/dev/null | tr -d "'" || echo "")
-        if [ "$PTYXIS_DEFAULT_CONTAINER" == "$CONTAINER_ID" ]; then
-            gsettings set "org.gnome.Ptyxis.Profile:/org/gnome/Ptyxis/Profiles/${PTYXIS_DEFAULT_PROFILE_UUID}/" default-container session
-        fi
+    CURRENT_DEFAULT=$(kwriteconfig6 --file "$KONSOLE_RC" --group "Desktop Entry" --key "DefaultProfile" 2>/dev/null || echo "")
+    
+    if [ "$CURRENT_DEFAULT" == "${PROFILE_NAME}.profile" ]; then
+        kwriteconfig6 --file "$KONSOLE_RC" --group "Desktop Entry" --key "DefaultProfile" --delete
     fi
+    
+    rm -f "$PROFILE_FILE"
 fi
+
 podman rm -f apx-vso-native
 
 if [ "$1" == "--tty" ]; then

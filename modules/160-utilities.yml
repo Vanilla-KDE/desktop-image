@@ -2,13 +2,9 @@ name: utilities
 type: apt
 sources:
   - packages:
-#    - gnome-disk-utility
-#    - gnome-sushi
     - ghostscript
     - zenity
     - flatpak
     - plasma-discover-backend-flatpak
     - locales-all
-
-#    - gnome-user-docs
     - rygel
