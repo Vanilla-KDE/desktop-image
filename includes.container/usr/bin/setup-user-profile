@@ -8,7 +8,10 @@ WALLPAPER="/usr/share/wallpapers/fairy-tale"
 
 [ -f "$MARKER" ] && exit 0
 
-/usr/bin/plasma-apply-wallpaperimage "$WALLPAPER"
+plasma-apply-wallpaperimage "$WALLPAPER"
+
+kwriteconfig6 --file kscreenlockerrc --group Greeter --group Wallpaper --group org.kde.image --group General --key Image "$WALLPAPER"
+
 
 # Remove panels for vanilla
 
