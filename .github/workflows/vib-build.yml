@@ -5,6 +5,7 @@ on:
     branches:
       - 'dev'
       - 'vision'
+      - 'plasma-integration'
     tags:
       - '*'
   workflow_dispatch:
@@ -41,16 +42,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v7
-
-    - name: Change tag in recipe.
-      if: ${{ github.ref_type != 'tag' }}
-      run: |
-        if [ -n "${{ github.base_ref }}" ]; then
-          TAG="${{ github.base_ref }}"
-        else
-          TAG="${{ github.ref_name }}"
-        fi
-        sed "s/ghcr.io\/vanilla-os\/core:latest/ghcr.io\/vanilla-os\/core:$TAG/" -i recipe.yml
 
     - uses: vanilla-os/vib-gh-action@v1.1.0
       with:

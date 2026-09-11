@@ -3,7 +3,6 @@ type: apt
 sources:
   - packages:
     - plasma-desktop
-    - sddm
 
     - udisks2
     - upower
@@ -12,27 +11,38 @@ sources:
     - libpam-fprintd
 
 modules:
-  - name: sddm-theme
+  - name: plasma-build-deps
+    type: apt
+    sources:
+      - packages:
+        - cmake
+        - extra-cmake-modules
+        - build-essential
+
+  - name: plasma-setup
     type: shell
     sources:
-      - type: git
-        url: https://github.com/Vanilla-KDE/vanilla-sddm
-        tag: v0.1
+      - url: https://invent.kde.org/plasma/plasma-setup.git
+        type: git
+        tag: v6.7.90
     commands:
-      - mkdir -p /usr/share/sddm/themes
-      - mv /sources/sddm-theme/vanilla-sddm /usr/share/sddm/themes/vanilla
-#modules:
-#  - name: plasma-login-manager-systemd
-#    type: shell
-#    commands:
-#      - cmake -S plasma-login-manager -B plasma-login-manager/build && make install -C plasma-login-manager/build
-#      - systemctl disable sddm
-#      - systemctl enable plasmalogin
-#    sources:
-#      - url: https://invent.kde.org/plasma/plasma-login-manager.git
-#        type: git
-#        tag: v6.7.4
-#      - packages:
-#        - cmake
-#        - extra-cmake-modules
-#        - build-essential
+      - cd /sources/plasma-setup
+      - cmake -S plasma-setup -B plasma-setup/build/
+      - cmake --build plasma-setup/build/ --parallel
+      - cmake --install plasma-setup/build/
+      - systemd-sysusers
+      - systemctl enable plasma-setup.service
+
+  - name: plasma-login-manager
+    type: shell
+    sources:
+      - url: https://invent.kde.org/plasma/plasma-login-manager.git
+        type: git
+        tag: v6.7.4
+    commands:
+      - cd /sources/plasma-login-manager
+      - cmake -S plasma-login-manager -B plasma-login-manager/build && make install -C plasma-login-manager/build
+      - systemd-sysusers
+      - systemctl enable plasmalogin
+
+
