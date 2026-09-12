@@ -38,6 +38,9 @@ modules:
         - libkf6kio-dev
         - libkscreen-dev
         - libvulkan-dev
+        - liblayershellqtinterface-dev
+        - libpam0g-dev
+
         - plasma-desktop-dev
         - plasma-workspace-dev
 
@@ -58,7 +61,7 @@ modules:
   - name: plasma-login-manager
     type: shell
     sources:
-      - url: https://invent.kde.org/plasma/plasma-login-manager.git
+      - url: https://github.com/Vanilla-KDE/plasma-login-manager.git
         type: git
         tag: v6.6.5
     commands:
