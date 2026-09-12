@@ -2,7 +2,7 @@ name: cleanup
 type: shell
 commands:
   - sed -i '/^Categories=/ s/$/Utility;X-GNOME-Utilities;/' /usr/share/applications/display-im7.q16.desktop
-  - apt remove -y dpkg-dev debhelper-compat dh-sequence-gnome libglib2.0-dev meson build-essential debhelper libadwaita-1-dev gettext make libjpeg-dev libnm-dev libnma-gtk4-dev papers cmake extra-cmake-modules build-essential qt6-base-dev qt6-tools-dev-tools qt6-declarative-dev qt6-wayland-dev qt6-shadertools-dev libkf6coreaddons-dev libkf6i18n-dev libkf6package-dev libkf6config-dev libkf6auth-dev libkf6dbusaddons-dev libkf6kcmutils-dev libkf6kio-dev libkscreen-dev libvulkan-dev plasma-desktop-dev plasma-workspace-dev
+  - apt remove -y dpkg-dev debhelper-compat dh-sequence-gnome libglib2.0-dev meson build-essential debhelper libadwaita-1-dev gettext make libjpeg-dev libnm-dev libnma-gtk4-dev papers cmake extra-cmake-modules build-essential qt6-base-dev qt6-tools-dev-tools qt6-declarative-dev qt6-wayland-dev qt6-shadertools-dev libkf6coreaddons-dev libkf6i18n-dev libkf6package-dev libkf6config-dev libkf6auth-dev libkf6dbusaddons-dev libkf6kcmutils-dev libkf6kio-dev libkscreen-dev libvulkan-dev liblayershellqtinterface-dev libpam0g-dev libsystemd-dev pkg-config plasma-desktop-dev plasma-workspace-dev
 
   - apt autoremove -y
   - apt clean

@@ -40,7 +40,8 @@ modules:
         - libvulkan-dev
         - liblayershellqtinterface-dev
         - libpam0g-dev
-
+        - libsystemd-dev
+        - pkg-config
         - plasma-desktop-dev
         - plasma-workspace-dev
 
@@ -66,6 +67,7 @@ modules:
         tag: v6.6.5
     commands:
       - cd /sources/plasma-login-manager
+      - 'ln -s "$(pkg-config --variable=pcfiledir libsystemd)/libsystemd.pc" "$(pkg-config --variable=pcfiledir libsystemd)/systemd.pc"'
       - cmake -S plasma-login-manager -B plasma-login-manager/build && make install -C plasma-login-manager/build
       - systemd-sysusers
       - systemctl enable plasmalogin
