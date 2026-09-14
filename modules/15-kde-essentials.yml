@@ -53,6 +53,7 @@ modules:
         tag: v6.7.5
     commands:
       - cd /sources/plasma-setup
+      - sed -i 's|wallpapers/Next|wallpapers/fairy-tale|g' plasma-setup/src/qml/LandingComponent.qml
       - cmake -S plasma-setup -B plasma-setup/build/ -DQT_QML_IMPORT_PATH=/usr/lib/x86_64-linux-gnu/qt6/qml
       - cmake --build plasma-setup/build/ --parallel
       - cmake --install plasma-setup/build/

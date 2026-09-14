@@ -12,30 +12,6 @@ plasma-apply-wallpaperimage "$WALLPAPER"
 
 kwriteconfig6 --file kscreenlockerrc --group Greeter --group Wallpaper --group org.kde.image --group General --key Image "$WALLPAPER"
 
-
-# Remove panels for vanilla
-
-TARGET_USER="vanilla"
-
-if [ "$USER" = "$TARGET_USER" ]; then
-
-    qdbus6 org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "var panels = panels(); for (var i in panels) { panels[i].remove(); }"
-
-fi
-
-
-# Welcome Center
-
-CONFIG="$HOME/.config/plasma-welcomerc"
-VERSION=$(plasmashell --version 2>/dev/null | grep -oP '\d+\.\d+(\.\d+)?')
-
-mkdir -p "$(dirname "$CONFIG")"
-cat > "$CONFIG" <<EOF
-[General]
-LastSeenVersion=$VERSION
-ShouldShow=false
-EOF
-
 # Marker
 
 mkdir -p "$(dirname "$MARKER")"
