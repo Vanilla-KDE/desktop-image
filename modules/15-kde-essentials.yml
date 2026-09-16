@@ -4,6 +4,19 @@ commands:
   - "#empty"
 
 modules:
+  - name: plasma-welcome
+    type: shell
+    sources:
+      - type: file
+        url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-amd64.deb
+        checksum: b3938e7135b52415de27bad76de62d10b2f2b0870a5a96d20df6841d9a94f712
+      - type: file
+        url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-arm64.deb
+        checksum: c512aa079a09131066e6b3d4713d69e14354443c32412a8f296bddb8452cd8cd
+    commands:
+      - ARCH=$(dpkg --print-architecture)
+      - apt install -y /sources/plasma-welcome/plasma-welcome-${ARCH}/plasma-welcome.deb
+
   - name: plasma
     type: apt
     sources:

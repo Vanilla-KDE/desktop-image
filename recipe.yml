@@ -68,7 +68,6 @@ stages:
       - modules/00-vanilla-migration.yml
       - modules/03-fswarn.yml
       - modules/10-vanilla-abroot-rollback-notifier.yml
-      - modules/10-plasma-welcome.yml
       - modules/15-kde-essentials.yml
       - modules/17-kde-apps.yml
       - modules/18-libs-extra.yml
