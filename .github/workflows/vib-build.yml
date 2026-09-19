@@ -5,7 +5,6 @@ on:
     branches:
       - 'dev'
       - 'vision'
-      - 'plasma-integration'
     tags:
       - '*'
   workflow_dispatch:
