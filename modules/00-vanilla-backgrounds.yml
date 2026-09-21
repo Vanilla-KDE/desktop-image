@@ -1,16 +1,8 @@
 name: vanilla-backgrounds
-type: dpkg-buildpackage
-source:
-  type: git
-  url: https://github.com/Vanilla-KDE/vanilla-backgrounds.git
-  tag: v1.0.5
-  paths:
-  - vanilla-backgrounds
-modules:
-- name: vanilla-backgrounds-deps-install
-  type: apt
-  sources:
-    - packages:
-      - dpkg-dev
-      - debhelper-compat
-      - meson
+type: shell
+sources:
+  - type: file
+    url: https://github.com/Vanilla-KDE/vanilla-backgrounds/releases/download/v1.0.5/vanilla-backgrounds.deb
+    checksum: 3a81b724223c55a9ae503de4b7daf5967a3d2bfdb7a16bdaf68a519df61c600c
+commands:
+  - apt install -y /sources/vanilla-backgrounds/vanilla-backgrounds/vanilla-backgrounds.deb

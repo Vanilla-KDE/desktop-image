@@ -9,10 +9,10 @@ modules:
     sources:
       - type: file
         url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-amd64.deb
-        checksum: b3938e7135b52415de27bad76de62d10b2f2b0870a5a96d20df6841d9a94f712
+        checksum: d5642b8c233b6b3389f3aa1b3eba1fcf5790aa0156cae9ed2151fbcf3aeacc42
       - type: file
         url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-arm64.deb
-        checksum: c512aa079a09131066e6b3d4713d69e14354443c32412a8f296bddb8452cd8cd
+        checksum: b55e63b610ced9da2beeb4683cd22d7c7b7643f4a176d357dd292cc76e9bf172
     commands:
       - ARCH=$(dpkg --print-architecture)
       - apt install -y /sources/plasma-welcome/plasma-welcome-${ARCH}/plasma-welcome.deb
@@ -22,6 +22,7 @@ modules:
     sources:
       - packages:
         - plasma-desktop
+        - plasma-workspace-wallpapers
 
         - udisks2
         - upower
@@ -66,7 +67,9 @@ modules:
         tag: v6.7.5
     commands:
       - cd /sources/plasma-setup
-      - sed -i 's|wallpapers/Next|wallpapers/fairy-tale|g' plasma-setup/src/qml/LandingComponent.qml
+      - sed -i 's|wallpapers/Next|wallpapers/FairyTale|g' plasma-setup/src/qml/LandingComponent.qml
+      - sed -i 's|const landscapeFile = "5120x2880.png";|const landscapeFile = "9556x4096.webp";|' plasma-setup/src/qml/LandingComponent.qml
+      - sed -i 's|const portraitFile  = "1440x2960.png";|const portraitFile  = "9556x4096.webp";|' plasma-setup/src/qml/LandingComponent.qml  
       - cmake -S plasma-setup -B plasma-setup/build/ -DQT_QML_IMPORT_PATH=/usr/lib/x86_64-linux-gnu/qt6/qml
       - cmake --build plasma-setup/build/ --parallel
       - cmake --install plasma-setup/build/
@@ -86,4 +89,9 @@ modules:
       - systemd-sysusers
       - systemctl enable plasmalogin
 
-
+  - name: plasma-wallpaper
+    type: shell
+    commands:
+      - sed -i 's/^defaultWallpaperTheme=Next/defaultWallpaperTheme=FairyTale/' /usr/share/plasma/desktoptheme/*/plasmarc
+      - sed -i 's/^defaultFileSuffix=\.png/defaultFileSuffix=.webp/' /usr/share/plasma/desktoptheme/*/plasmarc
+      - sed -i 's/^Image=Next/Image=FairyTale/' /usr/share/plasma/look-and-feel/*/contents/defaults

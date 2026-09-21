@@ -1,9 +1,11 @@
-# Vanilla OS KDE Image
+# Vanilla OS Kipferl Image
 
-Containerfile for building a Vanilla OS KDE image.
+Containerfile for building a Vanilla OS Kipferl image.
 
 > [!CAUTION]
 > This image is NOT officially maintained by Vanilla OS.
+>
+> This image should NOT be used as an "initial image" before [#489](https://github.com/Vanilla-OS/vanilla-installer/pull/489) is merged. Use `abroot rebase` instead.
 
 This image is based on top of [`vanillaos/core`](https://github.com/Vanilla-OS/core-image/pkgs/container/core) and offers the Vanilla OS Desktop experience with KDE.
 
