@@ -84,6 +84,12 @@ modules:
         tag: v6.6.5
     commands:
       - cd /sources/plasma-login-manager
+      
+      # Patches for default avatar
+      - rm plasma-login-manager/src/frontend/greeter/qml/faces/.face.icon 
+      - mv /etc/skel/.face /etc/skel/.face.icon
+      - cp /etc/skel/.face.icon plasma-login-manager/src/frontend/greeter/qml/faces/
+
       - 'ln -s "$(pkg-config --variable=pcfiledir libsystemd)/libsystemd.pc" "$(pkg-config --variable=pcfiledir libsystemd)/systemd.pc"'
       - cmake -S plasma-login-manager -B plasma-login-manager/build && make install -C plasma-login-manager/build
       - systemd-sysusers
