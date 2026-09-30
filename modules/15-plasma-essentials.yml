@@ -1,4 +1,4 @@
-name: kde-essentials
+name: plasma-essentials
 type: shell
 commands:
   - "#empty"

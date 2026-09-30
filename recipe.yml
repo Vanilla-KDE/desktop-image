@@ -1,5 +1,5 @@
-name: Vanilla KDE
-id: kde
+name: Vanilla Plasma
+id: plasma
 vibversion: 1.1.0
 
 stages:
@@ -68,8 +68,8 @@ stages:
       - modules/00-vanilla-migration.yml
       - modules/03-fswarn.yml
       - modules/10-vanilla-abroot-rollback-notifier.yml
-      - modules/15-kde-essentials.yml
-      - modules/17-kde-apps.yml
+      - modules/15-plasma-essentials.yml
+      - modules/17-plasma-apps.yml
       - modules/18-libs-extra.yml
       - modules/50-laptop-goodies.yml
       - modules/60-media.yml

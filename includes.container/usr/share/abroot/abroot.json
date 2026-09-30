@@ -5,7 +5,7 @@
     "registry": "ghcr.io",
     "registryService": "registry.ghcr.io",
     "registryAPIVersion": "v2",
-    "name": "vanilla-kde/kde",
+    "name": "vanilla-kde/plasma",
     "tag": "latest",
 
     "iPkgMngPre": "lpkg --unlock",

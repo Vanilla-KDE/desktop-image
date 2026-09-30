@@ -1,4 +1,4 @@
-name: kde-apps
+name: plasma-apps
 type: apt
 sources:
   - packages:
