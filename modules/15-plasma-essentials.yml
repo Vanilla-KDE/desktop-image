@@ -64,7 +64,7 @@ modules:
     sources:
       - url: https://invent.kde.org/plasma/plasma-setup.git
         type: git
-        tag: v6.7.5
+        tag: v6.6.5
     commands:
       - cd /sources/plasma-setup
       - sed -i 's|wallpapers/Next|wallpapers/FairyTale|g' plasma-setup/src/qml/LandingComponent.qml
