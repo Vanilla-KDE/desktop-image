@@ -9,10 +9,10 @@ modules:
     sources:
       - type: file
         url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-amd64.deb
-        checksum: f07242354f6e4f12642489256690763261799e4a201c2f4f622b75c666bba91f
+        checksum: 68931de6bec30c006d1bcd432f06ce15bf41b0dc8bb5750b55aaf4b2ed2087d7
       - type: file
         url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-arm64.deb
-        checksum: bf74ed68491c82814e970e2a0bd753e5bef33bc88a9435a6ea058b81b8d1b67d
+        checksum: 2edfe17e9d97136ea04db92258fc91f45f267c1663822efd4ebb8f496fc08fcb
     commands:
       - ARCH=$(dpkg --print-architecture)
       - apt install -y /sources/plasma-welcome/plasma-welcome-${ARCH}/plasma-welcome.deb
