@@ -3,5 +3,3 @@ type: shell
 commands:
   # Make init.d scripts executable
   - chmod +x /usr/share/init.d/*
-  # discover-software-setup
-  - rm /usr/lib/*/*/plugins/discover/packagekit-backend.so
