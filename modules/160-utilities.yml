@@ -8,3 +8,4 @@ sources:
     - plasma-discover-backend-flatpak
     - locales-all
     - rygel
+    - kde-config-fcitx5
