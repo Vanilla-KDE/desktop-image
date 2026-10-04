@@ -10,12 +10,13 @@ modules:
       - type: file
         url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-amd64.deb
         checksum: 0883707e2a878361b7d4427fc9fae9a416407757b728fe498675755362b1491d
+        only-arches: [amd64]
       - type: file
         url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-arm64.deb
         checksum: 2adfb96808dd23e77f985e2a9152fdf68222035f02c4891d9aaf4891f543a18f
+        only-arches: [arm64]
     commands:
-      - ARCH=$(dpkg --print-architecture)
-      - apt install -y /sources/plasma-welcome/plasma-welcome-${ARCH}/plasma-welcome.deb
+      - apt install -y /sources/plasma-welcome/plasma-welcome-*/plasma-welcome.deb
 
   - name: plasma
     type: apt
@@ -111,3 +112,37 @@ modules:
       - sed -i 's/^defaultWallpaperTheme=Next/defaultWallpaperTheme=FairyTale/' /usr/share/plasma/desktoptheme/*/plasmarc
       - sed -i 's/^defaultFileSuffix=\.png/defaultFileSuffix=.webp/' /usr/share/plasma/desktoptheme/*/plasmarc
       - sed -i 's/^Image=Next/Image=FairyTale/' /usr/share/plasma/look-and-feel/*/contents/defaults
+
+  - name: plasma-discover-backend
+    type: shell
+    sources:
+      - type: file
+        url: https://github.com/Vanilla-KDE/discover-vso-backend/releases/download/continuous/libvanillavso-backend_amd64.so
+        checksum: 404d14a2b0ec6b4d48e38d27fe61920d1eec489111e7f7565db807d54fdc7027
+        only-arches: [amd64]
+      - type: file
+        url: https://github.com/Vanilla-KDE/discover-vso-backend/releases/download/continuous/libvanillavso-backend_arm64.so
+        checksum: 2403da3728aa3f4ee5d095c10317a2d0c05a40a23b0bc71cc93f7ad6669fa3ad
+        only-arches: [arm64]
+    commands:
+      - ARCH=$(dpkg --print-architecture)
+      - rm /usr/lib/*/qt6/plugins/discover/packagekit-backend.so
+      - mv /sources/plasma-discover-backend/libvanillavso-backend_${ARCH}/plasma-discover-backend.so /sources/plasma-discover-backend/libvanillavso-backend_${ARCH}/libvanillavso-backend.so
+      - cp /sources/plasma-discover-backend/libvanillavso-backend_${ARCH}/libvanillavso-backend.so /usr/lib/*/qt6/plugins/discover/
+
+  - name: plasma-discover-backend-kauth
+    type: shell
+    sources:
+      - type: file
+        url: https://github.com/Vanilla-KDE/discover-vso-backend/releases/download/continuous/vanillavso_kauth_helper_amd64.bin
+        checksum: 5bc557615e3ad91fab49c30818c480d91c426aa3bedee706a947cd6d8a8d7467
+        only-arches: [amd64]
+      - type: file
+        url: https://github.com/Vanilla-KDE/discover-vso-backend/releases/download/continuous/vanillavso_kauth_helper_arm64.bin
+        checksum: a1cae731b27cb961d899b68c4dc254522cfd89f3ea57f5a75ab4f39910540f29
+        only-arches: [arm64]
+    commands:
+      - ARCH=$(dpkg --print-architecture)      
+      - mv /sources/plasma-discover-backend-kauth/vanillavso_kauth_helper_${ARCH}/plasma-discover-backend-kauth.bin /sources/plasma-discover-backend-kauth/vanillavso_kauth_helper_${ARCH}/vanillavso_kauth_helper
+
+      - cp /sources/plasma-discover-backend-kauth/vanillavso_kauth_helper_${ARCH}/vanillavso_kauth_helper /usr/lib/kf6/kauth/libexec/
