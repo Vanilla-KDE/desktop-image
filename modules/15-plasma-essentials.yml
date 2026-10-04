@@ -4,19 +4,6 @@ commands:
   - "#empty"
 
 modules:
-  - name: plasma-welcome
-    type: shell
-    sources:
-      - type: file
-        url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-amd64.deb
-        checksum: 68931de6bec30c006d1bcd432f06ce15bf41b0dc8bb5750b55aaf4b2ed2087d7
-      - type: file
-        url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-arm64.deb
-        checksum: 2edfe17e9d97136ea04db92258fc91f45f267c1663822efd4ebb8f496fc08fcb
-    commands:
-      - ARCH=$(dpkg --print-architecture)
-      - apt install -y /sources/plasma-welcome/plasma-welcome-${ARCH}/plasma-welcome.deb
-
   - name: plasma
     type: apt
     sources:
@@ -58,24 +45,6 @@ modules:
         - pkg-config
         - plasma-desktop-dev
         - plasma-workspace-dev
-
-  - name: plasma-setup
-    type: shell
-    sources:
-      - url: https://invent.kde.org/plasma/plasma-setup.git
-        type: git
-        tag: v6.7.5
-    commands:
-      - cd /sources/plasma-setup
-      - sed -i 's|wallpapers/Next|wallpapers/FairyTale|g' plasma-setup/src/qml/LandingComponent.qml
-      - sed -i 's|const landscapeFile = "5120x2880.png";|const landscapeFile = "9556x4096.webp";|' plasma-setup/src/qml/LandingComponent.qml
-      - sed -i 's|const portraitFile  = "1440x2960.png";|const portraitFile  = "9556x4096.webp";|' plasma-setup/src/qml/LandingComponent.qml  
-      - cmake -S plasma-setup -B plasma-setup/build/ -DQT_QML_IMPORT_PATH=/usr/lib/x86_64-linux-gnu/qt6/qml
-      - cmake --build plasma-setup/build/ --parallel
-      - cmake --install plasma-setup/build/
-      - systemd-sysusers
-      - systemctl enable plasma-setup.service
-
   - name: plasma-login-manager
     type: shell
     sources:
