@@ -15,7 +15,6 @@ stages:
     commands:
       - echo 'APT::Install-Recommends "1";' > /etc/apt/apt.conf.d/01norecommends
   cleanup:
-    - /boot/initrd.img*
     - /tmp/*
     - /var/cache/apt/pkgcache.bin
     - /var/cache/debconf
