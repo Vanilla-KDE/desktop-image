@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: Verify Base Image Integrity
       run:
-        gh attestation verify oci://ghcr.io/vanilla-os/core:latest --owner Vanilla-OS
+        gh attestation verify oci://ghcr.io/vanilla-kde/base:latest --owner Vanilla-KDE
       env:
         GH_TOKEN: ${{ github.token }}
 

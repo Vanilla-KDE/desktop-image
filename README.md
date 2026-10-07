@@ -7,7 +7,7 @@ Containerfile for building a Vanilla OS Kipferl image.
 >
 > This image should NOT be used as an "initial image" before [#489](https://github.com/Vanilla-OS/vanilla-installer/pull/489) is merged. Use `abroot rebase` instead.
 
-This image is based on top of [`vanillaos/core`](https://github.com/Vanilla-OS/core-image/pkgs/container/core) and offers the Vanilla OS Desktop experience with KDE Plasma.
+This image is based on top of [`vanillakde/base`](https://github.com/Vanilla-KDE/base-image/pkgs/container/base) and offers the Vanilla OS Desktop experience with KDE Plasma.
 
 ## Build
 

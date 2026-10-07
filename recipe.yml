@@ -4,7 +4,7 @@ vibversion: 1.1.0
 
 stages:
 - id: build
-  base: ghcr.io/vanilla-os/core:latest
+  base: ghcr.io/vanilla-kde/base:dev
   addincludes: true
   singlelayer: false
   labels:
@@ -30,57 +30,17 @@ stages:
   - name: init-setup
     type: shell
     commands:
-    - echo 'PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"' > /etc/environment
-    - sed -i '4,10d' /etc/profile
+    - lpkg --unlock
     - apt update
     - apt clean
-    - apt-mark hold snapd plasma-discover-backend-snap
-    - apt -y install squashfs-tools minisign
-
-  - name: vanilla-tools
-    type: shell
-    sources:
-      - type: tar
-        url: https://github.com/Vanilla-OS/vanilla-tools/releases/download/v1.0.1/vanilla-tools-amd64.tar.gz
-        checksum: aef32f07820e0993e534e6bccfa1a6daae6c8c6f0543d3e073f4f121f2ef2e31
-        only-arches: [amd64]
-      - type: tar
-        url: https://github.com/Vanilla-OS/vanilla-tools/releases/download/v1.0.1/vanilla-tools-arm64.tar.gz
-        checksum: e59b098338de6f6071376e07ec79b17be6c8f0a0dd354fab128e1e86a36d0862
-        only-arches: [arm64]
-    commands:
-    - mkdir -p /usr/bin
-    - cp /sources/vanilla-tools/vanilla-tools*/vanilla-tools/lpkg /usr/bin/lpkg
-    - cp /sources/vanilla-tools/vanilla-tools*/vanilla-tools/cur-gpu /usr/bin/cur-gpu
-    - chmod +x /usr/bin/lpkg
-    - chmod +x /usr/bin/cur-gpu
+    - apt-mark hold plasma-discover-backend-snap
 
   - name: packages-modules
     type: includes
     includes:
-      - modules/00-vanilla-desktop-base.yml
       - modules/00-vanilla-backgrounds.yml
-      - modules/00-vanilla-system-operator.yml
-      - modules/00-vanilla-apx-wrapper.yml
-      - modules/00-vanilla-sideload.yml
-      - modules/00-vanilla-updates-utility.yml
-      - modules/00-vanilla-prime-utility.yml
-      - modules/00-vanilla-migration.yml
-      - modules/03-fswarn.yml
-      - modules/10-vanilla-abroot-rollback-notifier.yml
       - modules/15-plasma-essentials.yml
       - modules/17-plasma-apps.yml
-      - modules/18-libs-extra.yml
-      - modules/50-laptop-goodies.yml
-      - modules/60-media.yml
-      - modules/80-printers.yml
-      - modules/100-accessibility.yml
-      - modules/110-fonts.yml
-      - modules/121-disable-ssh-daemon.yml
-      - modules/130-plymouth.yml
-      - modules/131-plymouth-theme-vanilla.yml
-      - modules/140-password.yml
-      - modules/160-utilities.yml
       - modules/997-misc-setup.yml
       - modules/999-cleanup.yml
 
@@ -90,12 +50,3 @@ stages:
     - apt autoremove -y
     - apt clean
     - lpkg --lock
-    - rsync -a /etc/ /sysconf/
-    cleanup:
-    - /sysconf/resolv.conf
-
-- id: initrd
-  base: build
-  runs:
-    commands:
-      - touch $(readlink -f /initrd.img)

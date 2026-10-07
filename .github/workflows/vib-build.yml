@@ -21,7 +21,7 @@ jobs:
     - name: Verify Base Image Integrity
       if: ${{ github.ref_type == 'tag' }}
       run:
-        gh attestation verify oci://ghcr.io/vanilla-os/core:latest --owner Vanilla-OS
+        gh attestation verify oci://ghcr.io/vanilla-kde/base:dev --owner Vanilla-KDE
       env:
         GH_TOKEN: ${{ github.token }}
 

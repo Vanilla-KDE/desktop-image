@@ -30,6 +30,12 @@ modules:
         - kde-inotify-survey
         - libpam-fprintd
 
+        - kwalletmanager
+        - ksshaskpass
+
+        - plasma-discover-backend-flatpak
+        - kde-config-fcitx5
+
   - name: plasma-build-deps
     type: apt
     sources:
