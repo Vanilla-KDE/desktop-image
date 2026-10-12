@@ -3,3 +3,5 @@ type: shell
 commands:
   # discover-software-setup
   - rm /usr/lib/*/*/plugins/discover/packagekit-backend.so
+  # remove first-setup
+  - apt remove -y vanilla-first-setup
