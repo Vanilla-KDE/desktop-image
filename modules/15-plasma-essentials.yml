@@ -9,10 +9,10 @@ modules:
     sources:
       - type: file
         url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-amd64.deb
-        checksum: 68931de6bec30c006d1bcd432f06ce15bf41b0dc8bb5750b55aaf4b2ed2087d7
+        checksum: 0883707e2a878361b7d4427fc9fae9a416407757b728fe498675755362b1491d
       - type: file
         url: https://github.com/Vanilla-KDE/plasma-welcome/releases/download/continuous/plasma-welcome-arm64.deb
-        checksum: 2edfe17e9d97136ea04db92258fc91f45f267c1663822efd4ebb8f496fc08fcb
+        checksum: 2adfb96808dd23e77f985e2a9152fdf68222035f02c4891d9aaf4891f543a18f
     commands:
       - ARCH=$(dpkg --print-architecture)
       - apt install -y /sources/plasma-welcome/plasma-welcome-${ARCH}/plasma-welcome.deb
@@ -70,7 +70,7 @@ modules:
     sources:
       - url: https://invent.kde.org/plasma/plasma-setup.git
         type: git
-        tag: v6.7.5
+        tag: v6.7.4
     commands:
       - cd /sources/plasma-setup
       - sed -i 's|wallpapers/Next|wallpapers/FairyTale|g' plasma-setup/src/qml/LandingComponent.qml
@@ -87,7 +87,7 @@ modules:
     sources:
       - url: https://github.com/Vanilla-KDE/plasma-login-manager.git
         type: git
-        tag: v6.6.5
+        tag: v6.7.4
     commands:
       - cd /sources/plasma-login-manager
 
