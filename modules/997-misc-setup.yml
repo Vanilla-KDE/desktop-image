@@ -5,3 +5,6 @@ commands:
   - apt remove -y vanilla-first-setup
   # Make init.d scripts executable
   - chmod +x /usr/share/init.d/*
+  # Make VSO setup & init executable
+  - chmod +x /usr/bin/reset-vso
+  - chmod +x /usr/bin/setup-vso-terminal
